@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1 class="title">Invalid request</h1>
+    <div>
+        <h2 class="title">Reasons</h2>
+        {% for reason in reasons %}
+            <p>{{ reason }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

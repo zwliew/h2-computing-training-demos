@@ -1,0 +1,22 @@
+body {
+    align-items: center;
+    background: #eee;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    font-family: Rubik, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.title {
+    font-family: Oswald, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.actions {
+    text-align: center;
+}
+
+.scores {
+    border-bottom: 1px solid #ccc;
+    margin: 16px;
+    padding: 16px;
+}

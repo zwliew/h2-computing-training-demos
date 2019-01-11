@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1 class="title">GPA Calculator</h1>
+    <form action="{{ url_for('calculate') }}" method="post">
+        <table class="scores">
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Mark</th>
+                    <th>Weightage</th>
+                </tr>
+            </thead>
+            <tbody id="mark-tbody">
+                <tr class="mark">
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        <input type="number" name="mark1" required="true" step="0.01">
+                    </td>
+                    <td>
+                        <input type="number" name="weightage1" required="true" step="0.01">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="actions">
+            <input type="submit" value="Calculate">
+            <button onClick="addNewEntry(event)" type="button">Add a row</button>
+            <button onClick="removeLastEntry(event)" type="button">Remove a row</button>
+        </div>
+    </form>
+    <script src="{{ url_for('static', filename='index.js') }}" defer></script>
+{% endblock %}
