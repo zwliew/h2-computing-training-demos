@@ -11,17 +11,20 @@ def get_db():
 
 def create_db():
     db = get_db()
-    db.execute('CREATE TABLE post (title TEXT NOT NULL, body TEXT, image TEXT)')
+    db.execute('CREATE TABLE post (title TEXT NOT NULL, body TEXT, image TEXT, document TEXT)')
     db.close()
 
 if not os.path.isfile('db.sqlite3'):
     create_db()
 
+ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png', 'docx', 'xlsx', 'pdf', 'doc', 'xls', 'ppt', 'pptx'])
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 UPLOAD_FOLDER = 'static/uploads'
 path = Path(UPLOAD_FOLDER)
 path.parent.mkdir(parents=True, exist_ok=True)
-
-ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -37,10 +40,6 @@ def read_all():
 def index():
     return redirect(url_for('read_all'))
 
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 @app.route('/posts/create', methods=['post', 'get'])
 def create():
     if request.method == 'GET':
@@ -53,15 +52,24 @@ def create():
     
     image = request.files['image'] if 'image' in request.files else None
     if image and allowed_file(image.filename):
-        filename = secure_filename(image.filename)
-        filename = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        image.save(filename)
+        image_filename = secure_filename(image.filename)
+        image_filename = os.path.join(app.config['UPLOAD_FOLDER'], image_filename)
+        image.save(image_filename)
     else:
-        filename = None
+        image_filename = None
+
+    document = request.files['document'] if 'document' in request.files else None
+    if document and allowed_file(document.filename):
+        doc_filename = secure_filename(document.filename)
+        doc_filename = os.path.join(app.config['UPLOAD_FOLDER'], doc_filename)
+        document.save(doc_filename)
+    else:
+        doc_filename = None
 
     db = get_db()
     with db:
-        db.execute('INSERT INTO post(title, body, image) VALUES (?,?,?)', (title, body, filename))
+        db.execute('INSERT INTO post(title, body, image, document) VALUES (?,?,?,?)',
+                (title, body, image_filename, doc_filename))
     db.close()
 
     return redirect(url_for('index'))
