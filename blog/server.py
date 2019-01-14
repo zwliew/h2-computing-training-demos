@@ -1,6 +1,7 @@
 from flask import Flask, flash, render_template, redirect, request, url_for
 from werkzeug.utils import secure_filename
 import os
+from pathlib import Path
 import sqlite3
 
 def get_db():
@@ -16,7 +17,10 @@ def create_db():
 if not os.path.isfile('db.sqlite3'):
     create_db()
 
-UPLOAD_FOLDER = './static/uploads'
+UPLOAD_FOLDER = 'static/uploads'
+path = Path(UPLOAD_FOLDER)
+path.parent.mkdir(parents=True, exist_ok=True)
+
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 
 app = Flask(__name__)

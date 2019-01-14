@@ -6,7 +6,7 @@
         <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">Back</a>
         <div class="card post my-3">
             {% if post['image'] is not none %}
-                <img class="card-img-top" src="{{ post['image'] }}">
+                <img class="card-img-top" src="{{ '/' + post['image'] }}">
             {% endif %}
             <div class="card-body">
                 {% if post['body'] is not none %}
