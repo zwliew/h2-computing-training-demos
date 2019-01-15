@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h1>🤓 Flash Cards 🤓</h1>
+{% endblock %}
+
+{% block body %}
+{% if card is not none %}
+<div class="card" onclick="handleCardClick(event)">
+  <div class="card-front">
+    <h4>Front</h4>
+    <p class="card-text">{{ card.front }}</p>
+    <div class="card-test" data-answer="{{ card.back }}">
+      <input id="card-test-input" type="text" placeholder="My guess">
+      <button class="pure-button pure-button-primary" id="card-test-submit" onclick="handleGuessClick(event)">Guess!</button>
+    </div>
+  </div>
+  <div class="card-back" hidden>
+    <h4>Back</h4>
+    <p class="card-text">{{ card.back }}</p>
+  </div>
+</div>
+<div class="actions">
+  <a href="/" class="actions-item">Randomize</a>
+</div>
+{% endif %}
+{% endblock %}

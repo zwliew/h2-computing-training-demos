@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<h1>New Card</h1>
+{% endblock %}
+
+{% block body %}
+<form action="/cards" method="post" class="pure-form pure-form-aligned">
+  <div class="pure-control-group">
+    <label for="front">Front (question)</label>
+    <textarea name="front" placeholder="Front text" required></textarea>
+  </div>
+  <div class="pure-control-group">
+    <label for="back">Back (answer)</label>
+    <textarea name="back" placeholder="Back text" required></textarea>
+  </div>
+  <div class="pure-controls">
+    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+  </div>
+</form>
+{% endblock %}

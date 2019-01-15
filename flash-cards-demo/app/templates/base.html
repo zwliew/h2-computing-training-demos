@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Flash Cards</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+      crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Rubik" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='scripts.js') }}" defer></script>
+  </head>
+
+  <body>
+    <div class="app">
+      {% block title %}
+      {% endblock %}
+      <div class="pure-menu pure-menu-horizontal app-nav">
+        <ul class="pure-menu-list">
+          <li class="pure-menu-item">
+            <a href="{{ url_for('index') }}" class="pure-menu-link">Home</a>
+          </li>
+          <li class="pure-menu-item">
+            <a href="{{ url_for('create_card_page') }}" class="pure-menu-link">Add new</a>
+          </li>
+          <li class="pure-menu-item">
+            <a href="{{ url_for('read_all_cards_page') }}" class="pure-menu-link">View all</a>
+          </li>
+        </ul>
+      </div>
+      <div class="app-main">
+        {% block body %}
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+
+</html>

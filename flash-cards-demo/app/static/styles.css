@@ -1,0 +1,76 @@
+body {
+  color: #333;
+  font-family: Rubik, Helvetica, Roboto, Arial, sans-serif;
+  line-height: 1.4;
+}
+
+h1, h2, h4 {
+  font-family: Oswald, Rubik, Helvetica, Roboto, Arial, sans-serif;
+}
+
+.card {
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  margin: 16px;
+  min-height: 120px;
+  width: 280px;
+  padding: 16px;
+  text-align: center;
+  transition: background 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.card:hover {
+  background: #eee;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
+}
+
+.card-text {
+  font-size: 1.4rem;
+}
+
+#card-test-input {
+  text-align: center;
+}
+
+.card-test-submit-success {
+  background: rgb(28, 184, 65);
+}
+
+.card-test-submit-hmmmmmmmmmmm🤔 {
+  background: rgb(223, 117, 20);
+}
+
+.app {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.app-nav {
+  text-align: center;
+}
+
+.app-main {
+  padding: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 16px;
+}
+
+.actions-item {
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  color: inherit;
+  padding: 8px;
+  text-decoration: none;
+  transition: background 200ms ease-out;
+}
+
+.actions-item:hover {
+  background: #eee;
+}
